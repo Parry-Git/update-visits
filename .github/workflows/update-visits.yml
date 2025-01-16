@@ -10,23 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 检出仓库代码
       - name: Check out repository
         uses: actions/checkout@v4
 
-      # 设置 Python 环境
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.9"
 
-      # 安装依赖项
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install selenium
 
-      # 下载 Chrome 和 ChromeDriver
       - name: Install Chrome and ChromeDriver
         run: |
           sudo apt-get update
@@ -37,17 +33,14 @@ jobs:
           wget https://chromedriver.storage.googleapis.com/$CHROME_VERSION/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip -d /usr/local/bin
 
-      # 设置环境变量（需要在 GitHub Secrets 中配置）
       - name: Set environment variables
         env:
           GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
           GITHUB_PASSWORD: ${{ secrets.GITHUB_PASSWORD }}
 
-      # 运行爬虫脚本
       - name: Run traffic scraper
         run: python trafficCrawler.py
 
-      # 提交并推送更改
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
