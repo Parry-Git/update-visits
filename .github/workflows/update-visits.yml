@@ -2,8 +2,8 @@ name: Update GitHub Traffic Data
 
 on:
   schedule:
-    - cron: "0 * * * *" # 每天 UTC 时间午夜运行一次
-  workflow_dispatch: # 手动触发工作流的选项
+  #   - cron: "0 * * * *" # 每天 UTC 时间午夜运行一次
+  # workflow_dispatch: # 手动触发工作流的选项
 
 jobs:
   update:
@@ -33,10 +33,10 @@ jobs:
           wget https://chromedriver.storage.googleapis.com/$CHROME_VERSION/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip -d /usr/local/bin
 
-      - name: Set environment variables
-        run: |
-          echo "MY_USERNAME=${{ secrets.MY_USERNAME }}"
-          echo "MY_PASSWORD=${{ secrets.MY_PASSWORD }}"
+      # - name: Set environment variables
+      #   run: |
+      #     echo "MY_USERNAME=${{ secrets.MY_USERNAME }}"
+      #     echo "MY_PASSWORD=${{ secrets.MY_PASSWORD }}"
 
       - name: Run traffic scraper
         run: python trafficCrawler.py
