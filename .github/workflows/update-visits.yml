@@ -34,11 +34,9 @@ jobs:
           unzip chromedriver_linux64.zip -d /usr/local/bin
 
       - name: Set environment variables
-        uses: actions/github-script@v6
-        with:
-          script: |
-            process.env.MY_USERNAME = "${{ secrets.MY_USERNAME }}";
-            process.env.MY_PASSWORD = "${{ secrets.MY_PASSWORD }}";
+        run: |
+          echo "MY_USERNAME=${{ secrets.MY_USERNAME }}" >> $GITHUB_ENV
+          echo "MY_PASSWORD=${{ secrets.MY_PASSWORD }}" >> $GITHUB_ENV
 
       - name: Run traffic scraper
         run: python trafficCrawler.py
