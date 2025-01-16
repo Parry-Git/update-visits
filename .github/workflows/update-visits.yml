@@ -12,7 +12,7 @@ jobs:
     steps:
       # 检出仓库代码
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # 设置 Python 环境
       - name: Set up Python
